@@ -1,3 +1,9 @@
+var Account = function (balance, currency) {
+    this.balance = balance;
+    this.currency = currency;
+
+    
+}
 var person = (function() {
     var details = {
         firstName: 'Jan',
@@ -9,27 +15,20 @@ var person = (function() {
         for(var i=0; i < this.accounts_list.length; i++){
             sum += this.accounts_list[i].balance;            
         } 
-        return sum};
+        return sum;};
     return {
         firstName: details.firstName,
         lastName: details.lastName,
-        accounts_list: [
-            {balance: 2131,
-            currency: 'euro'},
-            {balance: 7654,
-             currency: 'euro'}],
+        accounts_list: [new Account(2131, 'euro'), new Account(7654, 'euro')],
         sayHello: function (){
             return 'First Name: ' + this.firstName + 
             ', Last Name: ' + this.lastName + 
             ', number of accounts: ' + this.accounts_list.length +
             ', total balance: ' + calculateBalance.call(this);
-            
+
         },
-        addAccount: function (newBalance, newCurrency){
-            this.accounts_list.push ({
-               balance: newBalance,
-               currency: newCurrency 
-            })
+        addAccount: function (account){
+            this.accounts_list.push(account);
 
         },
         
@@ -37,8 +36,20 @@ var person = (function() {
 })();
 
 console.log(person.sayHello());
+console.log(person.accounts_list);
+person.addAccount(new Account(23233, 'PLN'));
 
-person.addAccount(1000, 'euro');
+myObject = new Account(2312,'forint');
+person.addAccount(myObject);
 
+console.log(person.accounts_list);
 console.log(person.sayHello());
+
+
+ 
+
+
+
+
+
 
